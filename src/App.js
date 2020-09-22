@@ -5,13 +5,11 @@ function App() {
 
   // handle async with useEffect
   useEffect(() => {
-    // run when app.js componenet loads, run once only
-    const fetchData = async() => {
-      await fetch("https://randomuser.me/api/").then(async (result) => {
-        console.log(await result.json());
-      })
-    }
-    fetchData();
+    // run when app.js componenet loads, run once only    
+    fetch("https://randomuser.me/api/").then(async(result) => {
+      console.log(await result.json());
+    })
+        
   }, [])
 
   return (
