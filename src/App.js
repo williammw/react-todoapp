@@ -8,12 +8,13 @@ function App() {
 const [username, setUsername] = useState("")
 const [password, setPassword] = useState("")
 const [user, setUser] = useState(null)
+const [error, setError] = useState("");
 
 const login = () => {  
   auth.signInWithEmailAndPassword(username, password)
   .then(user => {        
   }).catch(error =>{
-    console.log(error)
+    setError(error)
   });
 }
 
@@ -21,7 +22,7 @@ const register = () =>{
   console.log('register')
   auth.createUserWithEmailAndPassword(username, password).then(user => {    
   }).catch(error => {
-    console.log(error)  
+    setError(error) 
   })
 }
   return (
@@ -41,7 +42,7 @@ const register = () =>{
 
     <button onClick={login}>Login</button>
     <button onClick={register}>Register</button>
-
+    {error && <p>{error.message}</p>}
     </div>
   )
 }
