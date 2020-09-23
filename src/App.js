@@ -1,12 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import Todo from './todo';
+import db from './firebase';
 
 
 function App() {  
 
   const [input, setInput] = useState("")
   const [todos, setTodos] = useState([])
+  // run useEffect when component loaded useEffect(function, array)
+  useEffect(() => { 
+    db.collection('todos').onSnapshot(snapshot => {
+      setTodos(snapshot.docs.map(doc => doc.data().title))
+    })
+  }, [])
+
+  
   const addTodo = (e) => {
     e.preventDefault()
     //console.log(input)
@@ -17,7 +26,6 @@ function App() {
 
     console.log([...todos, input])
   }
-
   return (
     <div className="App">
       <h1>Todo</h1>
