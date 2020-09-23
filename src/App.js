@@ -1,20 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
 import Todo from './todo';
-import db from './firebase';
+import {db, auth} from './firebase';
 
 
 function App() {  
-const [username,setUsername] = useState("")
-const [password,setPassword] = useState("")
-const login = () => {
-  console.log('login dedail')
-  console.log(username)
-  console.log(password)
+const [username, setUsername] = useState("")
+const [password, setPassword] = useState("")
+const [user, setUser] = useState(null)
+
+const login = () => {  
+  auth.signInWithEmailAndPassword(username, password)
+  .then(user => {        
+  }).catch(error =>{
+    console.log(error)
+  });
 }
 
 const register = () =>{
   console.log('register')
+  auth.createUserWithEmailAndPassword(username, password).then(user => {    
+  }).catch(error => {
+    console.log(error)  
+  })
 }
   return (
     <div className="App">         
