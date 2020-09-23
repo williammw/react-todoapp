@@ -21,7 +21,10 @@ function App() {
     //console.log(input)
     // add whatever in input into array
     // clear the input field
-    setTodos([...todos, input]);
+    db.collection('todos').add({
+      title: input
+    })
+    // setTodos([...todos, input]);
     setInput('')
 
     console.log([...todos, input])
