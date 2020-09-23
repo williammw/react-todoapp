@@ -12,6 +12,10 @@ const login = () => {
   console.log(username)
   console.log(password)
 }
+
+const register = () =>{
+  console.log('register')
+}
   return (
     <div className="App">         
     <input 
@@ -28,7 +32,7 @@ const login = () => {
     />
 
     <button onClick={login}>Login</button>
-    <button>Register</button>
+    <button onClick={register}>Register</button>
 
     </div>
   )
